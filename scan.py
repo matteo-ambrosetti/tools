@@ -1,21 +1,43 @@
+import os
+import argparse
 import MDAnalysis
 import directions
 import numpy as np
-import os
+
+
+parser = argparse.ArgumentParser(description='Generate structures.')
+parser.add_argument("-f", dest="filename", required=False, default="benzene.xyz",
+                    help="Input filename (only .xyz supported)", type=str)
+parser.add_argument("-d_min", dest="dmin", required=False, default=2.5,
+                    help="Minimum distance of the dipole from the molecule.", type=float)
+parser.add_argument("-d_max", dest="dmax", required=False, default=10.0,
+                    help="Maximum distance of the dipole from the molecule.", type=float)
+parser.add_argument("-d_step", dest="dstep", required=False, default=0.25,
+                    help="Step of the scan.", type=float)
+parser.add_argument("-mu_len", dest="mulen", required=False, default=1.0,
+                    help="Length of the dipole.", type=float)
+parser.add_argument("-s", dest="scantype", required=False, default=1,
+                    help="""Type of the scan performed:\n
+                          1 --> Define two points. Scan along the vector joining
+                                those two points.\n
+                          2 --> Define three points. Scan along the vector perpendicular
+                                to the plane defined by the three points.""", type=int)
+
+args = parser.parse_args()
 
 # Reference geometry
-filename   = "benzene.xyz"
+filename   = args.filename #"benzene.xyz"
 
 # Output geometry prefix
 out_folder = "scan_plane_C/"
-d_min  = 2.5
-d_max  = 10.0
-d_step = 0.25
-dipole_len = 1.0
+d_min  = args.dmin
+d_max  = args.dmax
+d_step = args.dstep
+dipole_len = args.mulen
 indxA  = 6
 indxB  = 0
 indxC  = 1
-scan_type = 2
+scan_type = args.scantype
 
 # Make the output directory
 try:
