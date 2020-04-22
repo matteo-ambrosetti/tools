@@ -21,12 +21,29 @@ parser.add_argument("-mu_len", dest="mulen", required=False, default=1.0,
 parser.add_argument("-s", dest="scantype", required=False, default=1,
                     help="""Type of the scan performed:\n
                           1 --> Define two points. Scan along the vector joining
-                                those two points.\n
+                                those two points. The increment is defined from
+                                the second atom:   A ----> B |--step--| (+)<----(-).\n
                           2 --> Define three points. Scan along the vector perpendicular
-                                to the plane defined by the three points.""", type=int)
+                                to the plane defined by the three points. The increment
+                                is defined for the vector passing through the second atom:
+                                       (-)
+                                        |
+                                        |
+                                        v
+                                       (+)
+
+                                        ^
+                                        |
+                                        |
+                                A ----> B
+                               /        |
+                              /         |
+                             /
+                            v
+                            C
+                    """, type=int)
 parser.add_argument("-id", dest="atomindex", required=True, nargs="+",
                     help="Atomic index which define the atoms used.", type=int)
-
 args = parser.parse_args()
 
 # Reference geometry
@@ -49,7 +66,7 @@ elif scan_type == 2:
 
 # Make the output directory
 try:
-    os.mkdir(out_folder)
+    os.makedirs(out_folder)
 except:
     pass
 
@@ -78,7 +95,7 @@ elif scan_type == 2:
 out_prefix  = out_folder + filename.split(".xyz")[0]
 out_prefixs = out_folder + filename.split(".xyz")[0] + "s"
 a = open("{}.xyz".format(out_prefixs), "w")
-for dist in np.arange(d_min, d_max, d_step):
+for dist in np.arange(d_min, d_max+d_step, d_step):
     f = open("{}_d{:.2f}.xyz".format(out_prefix, dist), "w")
     f.write("{}\n".format(u.atoms.n_atoms+2))
     a.write("{}\n".format(u.atoms.n_atoms+2))
