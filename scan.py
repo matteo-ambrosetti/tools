@@ -6,8 +6,10 @@ import numpy as np
 
 
 parser = argparse.ArgumentParser(description='Generate structures.')
-parser.add_argument("-f", dest="filename", required=False, default="benzene.xyz",
+parser.add_argument("-f", dest="filename", required=True,
                     help="Input filename (only .xyz supported)", type=str)
+parser.add_argument("-of", dest="outfolder", required=True,
+                    help="Define the output folder name.", type=str)
 parser.add_argument("-d_min", dest="dmin", required=False, default=2.5,
                     help="Minimum distance of the dipole from the molecule.", type=float)
 parser.add_argument("-d_max", dest="dmax", required=False, default=10.0,
@@ -22,22 +24,28 @@ parser.add_argument("-s", dest="scantype", required=False, default=1,
                                 those two points.\n
                           2 --> Define three points. Scan along the vector perpendicular
                                 to the plane defined by the three points.""", type=int)
+parser.add_argument("-id", dest="atomindex", required=True, nargs="+",
+                    help="Atomic index which define the atoms used.", type=int)
 
 args = parser.parse_args()
 
 # Reference geometry
-filename   = args.filename #"benzene.xyz"
+filename   = args.filename
 
 # Output geometry prefix
-out_folder = "scan_plane_C/"
+if args.outfolder[-1] != "/":
+    args.outfolder += "/"
+out_folder = args.outfolder
 d_min  = args.dmin
 d_max  = args.dmax
 d_step = args.dstep
 dipole_len = args.mulen
-indxA  = 6
-indxB  = 0
-indxC  = 1
-scan_type = args.scantype
+scan_type  = args.scantype
+# Get the atom index
+if scan_type == 1:
+    indxA, indxB = args.atomindex
+elif scan_type == 2:
+    indxA, indxB, indxC = args.atomindex
 
 # Make the output directory
 try:
