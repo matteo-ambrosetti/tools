@@ -42,8 +42,10 @@ parser.add_argument("-s", dest="scantype", required=False, default=1,
                             v
                             C
                     """, type=int)
-parser.add_argument("-id", dest="atomindex", required=True, nargs="+",
+parser.add_argument("-id", dest="atomindex", required=False, nargs="+",
                     help="Atomic index which define the atoms used.", type=int)
+parser.add_argument("-p", dest="points", required=False, nargs="+",
+                    help="Coordinates of points.", type=float)
 args = parser.parse_args()
 
 # Reference geometry
@@ -58,11 +60,6 @@ d_max  = args.dmax
 d_step = args.dstep
 dipole_len = args.mulen
 scan_type  = args.scantype
-# Get the atom index
-if scan_type == 1:
-    indxA, indxB = args.atomindex
-elif scan_type == 2:
-    indxA, indxB, indxC = args.atomindex
 
 # Make the output directory
 try:
@@ -76,16 +73,27 @@ u = MDAnalysis.Universe(filename)
 # Choose the scan type
 if scan_type == 1:
     # Define the position of the reference atoms
-    posA  = u.atoms.positions[indxA]
-    posB  = u.atoms.positions[indxB]
+    try:
+        posA = args.points[0:3]
+        posB = args.points[3:6]
+    except:
+        indxA, indxB = args.atomindex
+        posA  = u.atoms.positions[indxA]
+        posB  = u.atoms.positions[indxB]
     # Scan along a direction defined by the
     # vector pointing from atom A to atom B
     direction = directions.versor(posA, posB)
 elif scan_type == 2:
     # Define the position of the reference atoms
-    posA  = u.atoms.positions[indxA]
-    posB  = u.atoms.positions[indxB]
-    posC  = u.atoms.positions[indxC]
+    try:
+        posA = args.points[0:3]
+        posB = args.points[3:6]
+        posC = args.points[6:9]
+    except:
+        indxA, indxB, indxC = args.atomindex
+        posA  = u.atoms.positions[indxA]
+        posB  = u.atoms.positions[indxB]
+        posC  = u.atoms.positions[indxC]
     # Scan along a direction defined by the
     # vector perpendicular to the plane defined
     # by three points: A, B and C
@@ -99,8 +107,12 @@ for dist in np.arange(d_min, d_max+d_step, d_step):
     f = open("{}_d{:.2f}.xyz".format(out_prefix, dist), "w")
     f.write("{}\n".format(u.atoms.n_atoms+2))
     a.write("{}\n".format(u.atoms.n_atoms+2))
-    f.write("scan along indxA:{} --> indxB{} - dist:{}\n".format(indxA, indxB,dist))
-    a.write("scan along indxA:{} --> indxB{} - dist:{}\n".format(indxA, indxB,dist))
+    try:
+        f.write("scan along A:{} --> B{} - dist:{}\n".format(posA, posB, dist))
+        a.write("scan along A:{} --> B{} - dist:{}\n".format(posA, posB, dist))
+    except:
+        f.write("scan along indxA:{} --> indxB{} - dist:{}\n".format(indxA, indxB,dist))
+        a.write("scan along indxA:{} --> indxB{} - dist:{}\n".format(indxA, indxB,dist))
     q_1 = posB + dist*direction
     q_2 = q_1  + dipole_len*direction
     for i in range(u.atoms.n_atoms):

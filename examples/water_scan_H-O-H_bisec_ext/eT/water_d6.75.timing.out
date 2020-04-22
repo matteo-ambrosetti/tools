@@ -1,0 +1,134 @@
+
+  Preparation of molecular system (Libint)
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.00
+  cpu/wall ratio:                  1.36
+
+  Preparation of molecular system (total)
+  wall time (sec):                 0.11
+  cpu time (sec):                  1.50
+  cpu/wall ratio:                 13.78
+
+  Cholesky decomposition of AO overlap
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.17
+  cpu/wall ratio:                 55.62
+
+
+  :: Hartree-Fock engine
+  =========================
+
+
+  1) Generate initial SAD density
+
+  SAD generation time
+  wall time (sec):                 0.34
+  cpu time (sec):                 14.60
+  cpu/wall ratio:                 43.44
+
+
+  2) Calculation of reference state (SCF-DIIS algorithm)
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.14
+  cpu/wall ratio:                 47.60
+
+  AO Fock construction
+  wall time (sec):                 0.02
+  cpu time (sec):                  1.00
+  cpu/wall ratio:                 52.74
+
+  AO Fock construction
+  wall time (sec):                 0.12
+  cpu time (sec):                  6.65
+  cpu/wall ratio:                 54.49
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.13
+  cpu time (sec):                  7.21
+  cpu/wall ratio:                 54.59
+
+  AO Fock construction
+  wall time (sec):                 0.15
+  cpu time (sec):                  8.14
+  cpu/wall ratio:                 54.28
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.23
+  cpu time (sec):                 12.24
+  cpu/wall ratio:                 54.15
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.16
+  cpu/wall ratio:                 54.92
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.02
+  cpu time (sec):                  1.11
+  cpu/wall ratio:                 52.76
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.11
+  cpu/wall ratio:                 55.75
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.01
+  cpu time (sec):                  0.50
+  cpu/wall ratio:                 50.18
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.11
+  cpu/wall ratio:                 55.81
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.01
+  cpu time (sec):                  0.56
+  cpu/wall ratio:                 50.89
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.11
+  cpu/wall ratio:                 55.76
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.01
+  cpu time (sec):                  0.50
+  cpu/wall ratio:                 50.41
+
+  AO Fock construction
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.16
+  cpu/wall ratio:                 54.97
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.02
+  cpu time (sec):                  1.11
+  cpu/wall ratio:                 52.90
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.01
+  cpu time (sec):                  0.66
+  cpu/wall ratio:                 54.86
+
+  SCF DIIS solver time
+  wall time (sec):                 0.47
+  cpu time (sec):                 25.28
+  cpu/wall ratio:                 53.68
+
+  Hartree-Fock engine
+  wall time (sec):                 0.81
+  cpu time (sec):                 39.88
+  cpu/wall ratio:                 49.42
+
+
+  :: Total time
+  ================
+
+  Total time in eT
+  wall time (sec):                 0.95
+  cpu time (sec):                 43.03
+  cpu/wall ratio:                 45.39
