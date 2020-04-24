@@ -1,0 +1,245 @@
+
+
+
+                     eT - an electronic structure program
+
+  ------------------------------------------------------------------------
+   Author list in alphabetical order:
+  ------------------------------------------------------------------------
+   J. H. Andersen, A. Balbi, S. Coriani, S. D. Folkestad, T. Giovannini, 
+   L. Goletto, T. S. Haugland, A. Hutcheson, I-M. Høyvik, E. F. Kjønstad, 
+   H. Koch, T. Moitra, R. H. Myhre, A. C. Paul, M. Scavino, A. Skeidsvoll, 
+   Å. H. Tveten
+  ------------------------------------------------------------------------
+
+
+  :: Input file
+  ================
+
+     Note: geometry section is excluded from this print
+
+     system
+        name: acetonitrile scan 8.50
+        charge: 0
+     end system
+
+     do
+       ground state
+     end do
+
+     memory
+        available: 8
+     end memory
+
+     solver scf
+        algorithm: scf-diis
+     end solver scf
+
+     molecular mechanics
+        forcefield: non-polarizable
+     end molecular mechanics
+
+     method
+        hf
+     end method
+
+
+  Running on 56 OMP thread(s)
+  Memory available for calculation: 8.000000 GB
+
+
+  :: Molecular system specifications (QM)
+  ==========================================
+
+     Name:             acetonitrile scan 8.50
+     Charge:           0
+     Multiplicity:     1
+     Coordinate units: angstrom
+
+     Pure basis functions:         87
+     Cartesian basis functions:    90
+     Primitive basis functions:   135
+
+     Nuclear repulsion energy (a.u.):             58.467242266463
+     Bohr/angstrom value (CODATA 2010):            0.529177210920
+
+     ==============================================================================
+                                     Geometry (angstrom)
+     ==============================================================================
+        Atom           X                  Y                  Z         # in input
+     ==============================================================================
+        Basis: 6-311++g**
+        1 C     -1.183009000000     0.000009000000     0.000044000000        1
+        2 C      0.280591000000    -0.000033000000    -0.000101000000        2
+        3 N      1.434854000000     0.000012000000     0.000006000000        3
+        4 H     -1.551986000000     0.908175000000     0.472453000000        4
+        5 H     -1.551961000000    -0.863153000000     0.550412000000        5
+        6 H     -1.552113000000    -0.044999000000    -1.022607000000        6
+     ==============================================================================
+
+     ==============================================================================
+                                     Geometry (a.u.)
+     ==============================================================================
+        Atom           X                  Y                  Z         # in input
+     ==============================================================================
+        Basis: 6-311++g**
+        1 C     -2.235563012896     0.000017007535     0.000083147949        1
+        2 C      0.530240143018    -0.000062360962    -0.000190862339        2
+        3 N      2.711481088737     0.000022676713     0.000011338357        3
+        4 H     -2.932828489159     1.716202023177     0.892806776729        4
+        5 H     -2.932781246006    -1.631122773597     1.040127935674        5
+        6 H     -2.933068484377    -0.085035785879    -1.932447163063        6
+     ==============================================================================
+
+
+  :: Molecular system specifications (MM)
+  ==========================================
+
+     Force Field:  non-polarizable
+
+     Number of MM atoms:                   2
+     Number of MM molecules:               1
+
+    ====================================================================
+                        MM Geometry (Å) and Parameters
+    ====================================================================
+    Atom    Mol             X          Y          Z            Charge
+    ====================================================================
+      H       1        -4.434210   8.002216   4.162625        1.000000
+      H       1        -4.773295   8.836809   4.596763       -1.000000
+    ====================================================================
+
+
+  :: RHF wavefunction
+  ======================
+
+  This is a QM/MM calculation
+
+     Electrostatic Embedding:
+
+     Each atom of the MM portion is endowed with a charge which value 
+     is a fixed external parameter.
+
+     The QM/MM electrostatic interaction energy is defined as:
+
+        E^ele_QM/MM = sum_i q_i * V_i(P)
+
+     where V_i(P) is the electrostatic potential due to the QM density 
+     calculated at the position of the i-th charge q_i.
+
+     For further details, see:
+     Senn & Thiel, Angew. Chem. Int. Ed., 2009, 48, 1198−1229
+
+
+  - Cholesky decomposition of AO overlap to get linearly independent orbitals:
+
+  - Orbital details:
+
+     Number of occupied orbitals:        11
+     Number of virtual orbitals:         76
+     Number of molecular orbitals:       87
+     Number of atomic orbitals:          87
+
+
+  :: Hartree-Fock engine
+  =========================
+
+  Drives the calculation of the Hartree-Fock state.
+
+  This is a RHF ground state calculation.
+  The following tasks will be performed:
+
+     1) Generate initial SAD density
+     2) Calculation of reference state (SCF-DIIS algorithm)
+
+
+  1) Generate initial SAD density
+
+
+  2) Calculation of reference state (SCF-DIIS algorithm)
+
+   - Self-consistent field DIIS Hartree-Fock solver
+  ----------------------------------------------------
+
+  A DIIS-accelerated Roothan-Hall self-consistent field solver. A least-square 
+  DIIS fit is performed on the previous Fock matrices and associated gradients. 
+  Following the Roothan-Hall update of the density, the DIIS-fitted Fock 
+  matrix is used to get the next orbital coefficients.
+
+  - Hartree-Fock solver settings:
+
+     DIIS dimension:                         8
+     Cumulative Fock threshold:       0.10E+01
+
+     Energy threshold:              0.1000E-05
+     Gradient threshold:            0.1000E-05
+
+     Coulomb screening threshold:   0.1000E-11
+     Exchange screening threshold:  0.1000E-09
+     Fock precision:                0.1000E-23
+     Integral cutoff:               0.1000E-11
+
+  - Setting initial AO density to SAD
+
+     Energy of initial guess:              -133.164522675534
+     Number of electrons in guess:           22.000000000000
+
+  Iteration       Energy (a.u.)      Max(grad.)    Delta E (a.u.)
+  ---------------------------------------------------------------
+     1          -132.431192178770     0.6862E-01     0.1324E+03
+     2          -132.465360974801     0.6601E-01     0.3417E-01
+     3          -132.488282836958     0.1051E-01     0.2292E-01
+     4          -132.489847276105     0.1672E-02     0.1564E-02
+     5          -132.489902338426     0.1095E-02     0.5506E-04
+     6          -132.489909238789     0.2347E-03     0.6900E-05
+     7          -132.489909674473     0.2890E-04     0.4357E-06
+     8          -132.489909683430     0.2305E-05     0.8957E-08
+     9          -132.489909683661     0.7056E-06     0.2314E-09
+  ---------------------------------------------------------------
+  Convergence criterion met in 9 iterations!
+
+  - Summary of RHF wavefunction energetics (a.u.):
+
+     HOMO-LUMO gap:                  0.494525860080
+     Nuclear repulsion energy:      58.041785518985
+     Electronic energy:           -190.531695202646
+     Total energy:                -132.489909683661
+
+  - Summary of QM/MM energetics:
+                                         a.u.             eV     kcal/mol
+     QM/MM SCF Contribution:        -0.103324583167
+     QM/MM Electrostatic Energy:     0.000395902522     0.01077     0.248
+
+  - Molecular orbital energies
+
+  -----------------------------------------------------------------------------------
+   1 -15.578406472178  23   0.188349754262  45   1.108141937622  67   2.780901289093
+   2 -11.292542728814  24   0.188846774544  46   1.108228913462  68   2.781314261249
+   3 -11.285855913878  25   0.274614699674  47   1.245998615915  69   2.853815970007
+   4  -1.229837593435  26   0.276066122977  48   1.246125341442  70   2.854050209478
+   5  -1.047579026574  27   0.313325603281  49   1.359298636778  71   2.919854783422
+   6  -0.703855576320  28   0.319631681440  50   1.490773929546  72   3.153704935647
+   7  -0.637106964978  29   0.320100798775  51   1.490781413762  73   3.153744860682
+   8  -0.636866214040  30   0.324478445011  52   1.647598505514  74   3.219444723568
+   9  -0.561979235421  31   0.356058867897  53   1.665642863211  75   3.260050604082
+  10  -0.468722708183  32   0.412912321951  54   1.721232434578  76   3.260080488562
+  11  -0.468660658895  33   0.575631515945  55   1.721549321463  77   3.392105408006
+  12   0.025865201185  34   0.575962539945  56   1.788707635578  78   3.557314002617
+  13   0.057358593219  35   0.599936686024  57   1.788774507376  79   4.176210463816
+  14   0.060978534778  36   0.732863005755  58   2.002477368986  80   4.176500407833
+  15   0.080542706512  37   0.733006075982  59   2.121542472275  81   4.277916327711
+  16   0.128292496960  38   0.806149018265  60   2.121555612662  82   4.470228681961
+  17   0.132761112168  39   0.806835619682  61   2.266067920091  83   4.470273484805
+  18   0.133395456146  40   0.847651415392  62   2.393582531801  84   5.054908172080
+  19   0.138570660436  41   0.878632133786  63   2.393618925146  85  25.029806357629
+  20   0.139642089566  42   0.932099464960  64   2.483073436567  86  25.461229554961
+  21   0.171025484680  43   1.014749782385  65   2.483091297081  87  37.268076650116
+  22   0.185680039956  44   1.091908240641  66   2.730567575098
+  -----------------------------------------------------------------------------------
+
+  - Timings for the RHF ground state calculation
+
+     Total wall time (sec):             37.35700
+     Total cpu time (sec):            1307.10492
+
+  eT terminated successfully!

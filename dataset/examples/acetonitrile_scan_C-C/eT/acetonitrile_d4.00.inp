@@ -1,0 +1,37 @@
+system
+   name: acetonitrile scan 4.00
+   charge: 0
+end system
+
+do
+  ground state
+end do
+
+memory
+   available: 8
+end memory
+
+solver scf
+   algorithm: scf-diis
+end solver scf
+
+molecular mechanics
+   forcefield: non-polarizable
+end molecular mechanics
+
+method
+   hf
+end method
+
+geometry
+basis: 6-311++g**
+CH3    -1.183009     0.000009     0.000044 
+CN     0.280591    -0.000033    -0.000101 
+N      1.434854     0.000012     0.000006 
+H     -1.551986     0.908175     0.472453 
+H     -1.551961    -0.863153     0.550412 
+H     -1.552113    -0.044999    -1.022607 
+ --
+H [IMol=1]    -5.183009     0.000124     0.000440 [q=+1.0]
+H [IMol=1]    -6.183009     0.000152     0.000539 [q=-1.0]
+end geometry
