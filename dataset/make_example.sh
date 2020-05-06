@@ -19,6 +19,7 @@
 #python scan.py -f benzene.xyz -of examples/benzene_plane_C/  -id 6 0 1 -s 2 -d_min 2.0
 #python make_eT.py -s benzene_d -n benzene -if examples/benzene_plane_C/ -of examples/benzene_plane_C/eT/
 #
+## Scan along the plane of benzene and passing through the center of mass of the molecule
 #
 #
 ##########
@@ -46,9 +47,9 @@
 
 
 
-#################
-## Acetonitrile #
-#################
+################
+# Acetonitrile #
+################
 # Scan along C-N bond
 python scan.py -f acetonitrile.xyz   -of examples/acetonitrile_scan_C-N/   -id 1 2 -s 1 -d_min 2.0
 python make_eT.py -s acetonitrile_d -n acetonitrile -if examples/acetonitrile_scan_C-N/ -of examples/acetonitrile_scan_C-N/eT/
@@ -64,3 +65,27 @@ python make_eT.py -s acetonitrile_d -n acetonitrile -if examples/acetonitrile_sc
 # Scan along the plane C-N-H and passing through N
 python scan.py -f acetonitrile.xyz   -of examples/acetonitrile_plane_N/    -id 0 2 3 -s 2 -d_min 2.0
 python make_eT.py -s acetonitrile_d -n acetonitrile -if examples/acetonitrile_plane_N/ -of examples/acetonitrile_plane_N/eT/
+
+
+#############
+## Methanol #
+#############
+## Scan along C-O bond
+#python scan.py -f methanol.xyz   -of examples/methanol_scan_C-O/   -id 0 1 -s 1 -d_min 2.0
+#python make_eT.py -s methanol_d -n methanol -if examples/methanol_scan_C-O/ -of examples/methanol_scan_C-O/eT/
+#
+## Scan along O-C bond
+#python scan.py -f methanol.xyz   -of examples/methanol_scan_O-C/   -id 1 0 -s 1 -d_min 2.0
+#python make_eT.py -s methanol_d -n methanol -if examples/methanol_scan_O-C/ -of examples/methanol_scan_O-C/eT/
+#
+## Scan along O-H bond
+#python scan.py -f methanol.xyz   -of examples/methanol_scan_O-H/   -id 1 5 -s 1 -d_min 2.0
+#python make_eT.py -s methanol_d -n methanol -if examples/methanol_scan_O-H/ -of examples/methanol_scan_O-H/eT/
+#
+## Scan along C-H bond (this is for the two C-H into which O-H is projected as a bisector)
+#python scan.py -f methanol.xyz   -of examples/methanol_scan_C-H_1/   -id 0 2 -s 1 -d_min 2.0
+#python make_eT.py -s methanol_d -n methanol -if examples/methanol_scan_C-H_1/ -of examples/methanol_scan_C-H_1/eT/
+#
+## Scan along C-H bond
+#python scan.py -f methanol.xyz   -of examples/methanol_scan_C-H_2/   -id 0 4 -s 1 -d_min 2.0
+#python make_eT.py -s methanol_d -n methanol -if examples/methanol_scan_C-H_2/ -of examples/methanol_scan_C-H_2/eT/

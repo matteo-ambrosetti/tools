@@ -74,7 +74,7 @@ def write_eT(infile, outfile, comment, functional, basis_set):
     f.write("basis: {}\n".format(basis_set))
     for i in range(u.atoms.n_atoms):
         if u.atoms.names[i] != "Po" and u.atoms.names[i] != "Ne":
-            f.write("{:<2} ".format(u.atoms.names[i]))
+            f.write("{:<2} ".format(u.atoms.names[i]).split(":")[0])
             for j in range(3):
                 f.write("{:>12.6f} ".format(u.atoms.positions[i,j]))
             f.write("\n")
@@ -91,7 +91,7 @@ def write_eT(infile, outfile, comment, functional, basis_set):
     f.write("end geometry")
     f.close()
 
-
+# Write submission file
 subfile = out_folder + "sub_eT.sh"
 f = open(subfile,"w")
 f.write("#!/bin/bash\n")

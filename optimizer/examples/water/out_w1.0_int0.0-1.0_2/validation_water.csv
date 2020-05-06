@@ -1,0 +1,110 @@
+# Run 1
+#           ChiH            EtaH            ChiO            EtaO
+#      4.4258e-01      5.0782e-01      6.0639e-01      5.6142e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.86621e-01          9.7371      -1855.1099             nan            -inf        -29.7547      4.4258e-01      5.0782e-01      6.0639e-01      5.6142e-01
+# Bulk validation
+Mean  isopolar error      : 1.5386     +/- 0.9134    
+Mean  anisopolar error    : 17.5908    +/- 11.6841   
+Mean  dipole moment error : 0.1841     +/- 0.1477    
+
+# Run 2
+#           ChiH            EtaH            ChiO            EtaO
+#      7.8539e-01      4.4629e-01      1.0000e+00      6.6575e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.86509e-01         -4.4300      -2506.6529             nan             inf        -33.7612      7.8539e-01      4.4629e-01      1.0000e+00      6.6575e-01
+# Bulk validation
+Mean  isopolar error      : 11.4652    +/- 4.1991    
+Mean  anisopolar error    : 25.4175    +/- 15.7971   
+Mean  dipole moment error : 0.3132     +/- 0.2445    
+
+# Run 3
+#           ChiH            EtaH            ChiO            EtaO
+#      7.5308e-01      1.0182e-01      1.0000e+00      1.0000e+00
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.86278e-01      -3538.9442    -119795.9935             nan             inf        -16.8704      7.5308e-01      1.0182e-01      1.0000e+00      1.0000e+00
+# Bulk validation
+Mean  isopolar error      : 10444.4004 +/- 79617.8518
+Mean  anisopolar error    : 20502.0891 +/- 148450.3813
+Mean  dipole moment error : 68.8617    +/- 418.1488  
+
+# Run 4
+#           ChiH            EtaH            ChiO            EtaO
+#      2.2000e-01      4.2767e-01      3.7590e-01      5.6793e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.84796e-01        -18.8589      -2691.7885             nan            -inf        -32.8632      2.2000e-01      4.2767e-01      3.7590e-01      5.6793e-01
+# Bulk validation
+Mean  isopolar error      : 22.6719    +/- 8.7576    
+Mean  anisopolar error    : 27.3576    +/- 17.0548   
+Mean  dipole moment error : 0.3119     +/- 0.2408    
+
+# Run 5
+#           ChiH            EtaH            ChiO            EtaO
+#      3.8368e-01      1.1131e-01      6.3159e-01      9.6614e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.82730e-01      -2720.7132     -92645.7918             nan            -inf        -23.5873      3.8368e-01      1.1131e-01      6.3159e-01      9.6614e-01
+# Bulk validation
+Mean  isopolar error      : 2433.1850  +/- 4069.1725 
+Mean  anisopolar error    : 4290.3612  +/- 8133.2084 
+Mean  dipole moment error : 28.6395    +/- 72.5734   
+
+# Run 6
+#           ChiH            EtaH            ChiO            EtaO
+#      2.5061e-01      4.2224e-01      5.1844e-01      7.7169e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.88199e-01        -10.8338      -2883.4156             nan            -inf        -32.1958      2.5061e-01      4.2224e-01      5.1844e-01      7.7169e-01
+# Bulk validation
+Mean  isopolar error      : 16.1197    +/- 6.1171    
+Mean  anisopolar error    : 29.9100    +/- 18.1947   
+Mean  dipole moment error : 0.3614     +/- 0.2846    
+
+# Run 7
+#           ChiH            EtaH            ChiO            EtaO
+#      1.0000e-08      5.0160e-01      1.5458e-01      5.4434e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.85318e-01          6.6040      -1895.6436             nan            -inf        -30.6348      1.0000e-08      5.0160e-01      1.5458e-01      5.4434e-01
+# Bulk validation
+Mean  isopolar error      : 3.3178     +/- 1.4562    
+Mean  anisopolar error    : 18.0218    +/- 11.9529   
+Mean  dipole moment error : 0.1986     +/- 0.1585    
+
+# Run 8
+#           ChiH            EtaH            ChiO            EtaO
+#      5.2963e-01      4.1644e-01      8.0445e-01      7.8808e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.88933e-01        -13.1719      -2979.7553             nan             inf        -31.5987      5.2963e-01      4.1644e-01      8.0445e-01      7.8808e-01
+# Bulk validation
+Mean  isopolar error      : 17.8590    +/- 6.8370    
+Mean  anisopolar error    : 31.0338    +/- 18.8129   
+Mean  dipole moment error : 0.3708     +/- 0.2933    
+
+# Run 9
+#           ChiH            EtaH            ChiO            EtaO
+#      1.0000e-08      9.7462e-02      6.5322e-02      5.7830e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.82371e-01      -4057.9088    -135430.2514             nan            -inf         -1.3187      1.0000e-08      9.7462e-02      6.5322e-02      5.7830e-01
+# Bulk validation
+Mean  isopolar error      : 31265.0762 +/- 283918.3779
+Mean  anisopolar error    : 53926.5617 +/- 535971.2263
+Mean  dipole moment error : 72.6867    +/- 535.4467  
+
+# Run 10
+#           ChiH            EtaH            ChiO            EtaO
+#      1.0673e-01      4.4237e-01      2.8500e-01      6.0618e-01
+#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiO            EtaO
+# Single molecule validation
+      2.84957e-01         -9.4331      -2522.0460             nan             inf        -32.2338      1.0673e-01      4.4237e-01      2.8500e-01      6.0618e-01
+# Bulk validation
+Mean  isopolar error      : 15.3932    +/- 5.7588    
+Mean  anisopolar error    : 25.4765    +/- 15.9360   
+Mean  dipole moment error : 0.2876     +/- 0.2241    
+

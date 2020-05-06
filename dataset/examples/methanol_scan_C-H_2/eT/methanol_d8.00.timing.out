@@ -1,0 +1,143 @@
+
+  Preparation of molecular system (Libint)
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.00
+  cpu/wall ratio:                  0.72
+
+  Preparation of molecular system (total)
+  wall time (sec):                 0.12
+  cpu time (sec):                  1.33
+  cpu/wall ratio:                 10.88
+
+  Cholesky decomposition of AO overlap
+  wall time (sec):                 0.13
+  cpu time (sec):                  6.58
+  cpu/wall ratio:                 49.09
+
+
+  :: Hartree-Fock engine
+  =========================
+
+
+  1) Generate initial SAD density
+
+  SAD generation time
+  wall time (sec):                23.96
+  cpu time (sec):               1115.55
+  cpu/wall ratio:                 46.57
+
+
+  2) Calculation of reference state (SCF-DIIS algorithm)
+
+  AO Fock construction
+  wall time (sec):                 0.19
+  cpu time (sec):                  8.24
+  cpu/wall ratio:                 44.52
+
+  AO Fock construction
+  wall time (sec):                 0.20
+  cpu time (sec):                  9.37
+  cpu/wall ratio:                 48.07
+
+  AO Fock construction
+  wall time (sec):                 0.21
+  cpu time (sec):                 10.19
+  cpu/wall ratio:                 47.86
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.64
+  cpu time (sec):                 30.12
+  cpu/wall ratio:                 47.06
+
+  AO Fock construction
+  wall time (sec):                 0.22
+  cpu time (sec):                 10.39
+  cpu/wall ratio:                 46.81
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.66
+  cpu time (sec):                 30.81
+  cpu/wall ratio:                 46.61
+
+  AO Fock construction
+  wall time (sec):                 0.23
+  cpu time (sec):                 10.85
+  cpu/wall ratio:                 47.60
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.66
+  cpu time (sec):                 30.91
+  cpu/wall ratio:                 46.69
+
+  AO Fock construction
+  wall time (sec):                 0.23
+  cpu time (sec):                 10.75
+  cpu/wall ratio:                 47.76
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.65
+  cpu time (sec):                 30.62
+  cpu/wall ratio:                 46.89
+
+  AO Fock construction
+  wall time (sec):                 0.21
+  cpu time (sec):                  9.96
+  cpu/wall ratio:                 47.44
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.65
+  cpu time (sec):                 30.39
+  cpu/wall ratio:                 46.62
+
+  AO Fock construction
+  wall time (sec):                 0.22
+  cpu time (sec):                 10.61
+  cpu/wall ratio:                 47.81
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.67
+  cpu time (sec):                 31.53
+  cpu/wall ratio:                 46.98
+
+  AO Fock construction
+  wall time (sec):                 0.23
+  cpu time (sec):                 10.98
+  cpu/wall ratio:                 47.34
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.67
+  cpu time (sec):                 31.17
+  cpu/wall ratio:                 46.80
+
+  AO Fock construction
+  wall time (sec):                 0.22
+  cpu time (sec):                 10.43
+  cpu/wall ratio:                 47.86
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.66
+  cpu time (sec):                 31.00
+  cpu/wall ratio:                 46.83
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.04
+
+  SCF DIIS solver time
+  wall time (sec):                 6.28
+  cpu time (sec):                293.22
+  cpu/wall ratio:                 46.68
+
+  Hartree-Fock engine
+  wall time (sec):                30.24
+  cpu time (sec):               1408.77
+  cpu/wall ratio:                 46.59
+
+
+  :: Total time
+  ================
+
+  Total time in eT
+  wall time (sec):                30.66
+  cpu time (sec):               1424.04
+  cpu/wall ratio:                 46.45

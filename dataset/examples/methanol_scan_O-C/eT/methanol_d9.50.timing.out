@@ -1,0 +1,144 @@
+
+  Preparation of molecular system (Libint)
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.00
+  cpu/wall ratio:                  0.65
+
+  Preparation of molecular system (total)
+  wall time (sec):                 0.11
+  cpu time (sec):                  1.52
+  cpu/wall ratio:                 13.91
+
+  Cholesky decomposition of AO overlap
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.17
+  cpu/wall ratio:                 55.70
+
+
+  :: Hartree-Fock engine
+  =========================
+
+
+  1) Generate initial SAD density
+
+  SAD generation time
+  wall time (sec):                 0.44
+  cpu time (sec):                 18.85
+  cpu/wall ratio:                 42.84
+
+
+  2) Calculation of reference state (SCF-DIIS algorithm)
+
+  AO Fock construction
+  wall time (sec):                 0.03
+  cpu time (sec):                  1.38
+  cpu/wall ratio:                 49.25
+
+  AO Fock construction
+  wall time (sec):                 0.11
+  cpu time (sec):                  5.73
+  cpu/wall ratio:                 52.55
+
+  AO Fock construction
+  wall time (sec):                 0.08
+  cpu time (sec):                  4.10
+  cpu/wall ratio:                 51.88
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.26
+  cpu time (sec):                 12.73
+  cpu/wall ratio:                 48.41
+
+  AO Fock construction
+  wall time (sec):                 0.06
+  cpu time (sec):                  3.00
+  cpu/wall ratio:                 49.16
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.37
+  cpu time (sec):                 18.66
+  cpu/wall ratio:                 50.44
+
+  AO Fock construction
+  wall time (sec):                 0.06
+  cpu time (sec):                  3.27
+  cpu/wall ratio:                 51.08
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.21
+  cpu time (sec):                  9.97
+  cpu/wall ratio:                 47.93
+
+  AO Fock construction
+  wall time (sec):                 0.12
+  cpu time (sec):                  6.35
+  cpu/wall ratio:                 52.45
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.48
+  cpu time (sec):                 24.97
+  cpu/wall ratio:                 51.91
+
+  AO Fock construction
+  wall time (sec):                 0.12
+  cpu time (sec):                  6.15
+  cpu/wall ratio:                 52.59
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.23
+  cpu time (sec):                 11.52
+  cpu/wall ratio:                 49.86
+
+  AO Fock construction
+  wall time (sec):                 0.05
+  cpu time (sec):                  2.41
+  cpu/wall ratio:                 51.18
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.27
+  cpu time (sec):                 13.88
+  cpu/wall ratio:                 51.20
+
+  AO Fock construction
+  wall time (sec):                 0.12
+  cpu time (sec):                  6.57
+  cpu/wall ratio:                 53.43
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.29
+  cpu time (sec):                 15.10
+  cpu/wall ratio:                 51.34
+
+  AO Fock construction
+  wall time (sec):                 0.04
+  cpu time (sec):                  1.86
+  cpu/wall ratio:                 50.28
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.15
+  cpu time (sec):                  7.49
+  cpu/wall ratio:                 48.65
+
+  SCF DIIS iteration time
+  wall time (sec):                 0.00
+  cpu time (sec):                  0.06
+  cpu/wall ratio:                 55.71
+
+  SCF DIIS solver time
+  wall time (sec):                 2.55
+  cpu time (sec):                127.19
+  cpu/wall ratio:                 49.96
+
+  Hartree-Fock engine
+  wall time (sec):                 2.99
+  cpu time (sec):                146.04
+  cpu/wall ratio:                 48.89
+
+
+  :: Total time
+  ================
+
+  Total time in eT
+  wall time (sec):                 3.14
+  cpu time (sec):                149.78
+  cpu/wall ratio:                 47.73

@@ -30,8 +30,14 @@ parser.add_argument("-p_max", dest="param_max", required=False, default=1.0,
                     help="Higher bound.", type=float)
 parser.add_argument("-o", dest="outfile", required=False, default="output.txt",
                     help="Name of the output file.", type=str)
+parser.add_argument("-m", dest="molecule", required=True, default="water",
+                    help="""Choose the name of the molecule to parameterize:
+                    water acetonitrile benzene methanol.""", type=str)
 parser.add_argument("-of", dest="outfolder", required=False, default="out/",
                     help="Name of the output folder.", type=str)
+parser.add_argument("-wt", dest="wtype", required=True,
+                    help="Weights type. 1 1/r", type=str)
+#
 # TODO
 # Prendi come input una lista di stringhe che corrispondono a folder_list
 # Prendi come input una stringa che corrisponde al prefisso delle geometrie
@@ -48,6 +54,49 @@ try:
 except:
     pass
 
+molecule = args.molecule.lower()
+if molecule == "water":
+    prefix  = "water_d"
+    nparams = 4
+    folder_list = ["water_plane_H",
+                   "water_plane_O",
+                   "water_scan_H-O-H_bisec",
+                   "water_scan_H-O-H_bisec_ext",
+                   "water_scan_O-H"]
+elif molecule == "acetonitrile":
+    prefix = "acetonitrile_d"
+    nparams = 8
+    folder_list = ["acetonitrile_scan_C-C",
+                   "acetonitrile_scan_C-H",
+                   "acetonitrile_scan_C-N"]
+elif molecule == "acetonitrile_no_at":
+    prefix = "acetonitrile_d"
+    nparams = 6
+    folder_list = ["acetonitrile_scan_C-C",
+                   "acetonitrile_scan_C-H",
+                   "acetonitrile_scan_C-N"]
+elif molecule == "methanol":
+    prefix = "methanol_d"
+    nparams = 8
+    folder_list = ["methanol_scan_C-H_1",
+                   "methanol_scan_C-H_2",
+                   "methanol_scan_C-O",
+                   "methanol_scan_O-C",
+                   "methanol_scan_O-H"]
+elif molecule == "methanol_no_at":
+    prefix = "methanol_d"
+    nparams = 6
+    folder_list = ["methanol_scan_C-H_1",
+                   "methanol_scan_C-H_2",
+                   "methanol_scan_C-O",
+                   "methanol_scan_O-C",
+                   "methanol_scan_O-H"]
+elif molecule == "benzene":
+    prefix = "benzene_d"
+    nparams = 4
+    folder_list = ["benzene_plane_C",
+                   "benzene_plane_H",
+                   "benzene_scan_C-H"]
 
 outputfile = args.outfolder + args.outfile
 paramfile  = args.outfolder + args.paramfile
@@ -60,6 +109,7 @@ param_max  = args.param_max
 global offspring
 offspring = 1
 
+w_type = args.wtype
 
 
 # EVALUATOR
@@ -74,21 +124,14 @@ def cost(params, args):
     dmin  = args.get('dmin',  2.5)
     dmax  = args.get('dmax',  10.25)
     dstep = args.get('dstep', 0.25)
-    prefix = args.get('prefix', 'water_d')
-    folder_list = args.get('folder_list', ["water_plane_H",
-                                           "water_plane_O",
-                                           "water_scan_H-O-H_bisec",
-                                           "water_scan_H-O-H_bisec_ext",
-                                           "water_scan_O-H"
-                                          ]
-                          )
+    prefix = args.get('prefix')
 
     # Initialize the cost function
     cost_list = []
 
     # Initialize dictionary for MMS
     in_file_dict = {}
-    in_file_dict["system_name"]     = "water"
+    in_file_dict["system_name"]     = molecule
     in_file_dict["out_folder"]      = "results/"
     in_file_dict["model"]           = "fq"
     in_file_dict["kernel"]          = "ohno"
@@ -115,14 +158,32 @@ def cost(params, args):
         # Generate input file
         f = open(paramfile,"w")
         f.write("# atom_type   chi                 eta      a.u.\n")
-        ## Acetonitrile
-        #f.write("CH3 {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
-        #f.write("CN  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
-        #f.write("N   {:>12.8f} {:>12.8f}\n".format(parameters[4],parameters[5]))
-        #f.write("H   {:>12.8f} {:>12.8f}\n".format(parameters[6],parameters[7]))
-        # Water
-        f.write("H  {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
-        f.write("O  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+        if molecule == "water":
+            f.write("H  {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("O  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+        elif molecule == "acetonitrile":
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("CN  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+            f.write("N   {:>12.8f} {:>12.8f}\n".format(parameters[4],parameters[5]))
+            f.write("H   {:>12.8f} {:>12.8f}\n".format(parameters[6],parameters[7]))
+        elif molecule == "acetonitrile_no_at":
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("CN  {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("N   {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+            f.write("H   {:>12.8f} {:>12.8f}\n".format(parameters[4],parameters[5]))
+        elif molecule == "methanol":
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("H3C {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+            f.write("OH  {:>12.8f} {:>12.8f}\n".format(parameters[4],parameters[5]))
+            f.write("HO  {:>12.8f} {:>12.8f}\n".format(parameters[6],parameters[7]))
+        elif molecule == "methanol_no_at":
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("H3C {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+            f.write("OH  {:>12.8f} {:>12.8f}\n".format(parameters[4],parameters[5]))
+            f.write("HO  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
+        elif molecule == "benzene":
+            f.write("H  {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
+            f.write("C  {:>12.8f} {:>12.8f}\n".format(parameters[2],parameters[3]))
         f.write("Po {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
         f.write("Ne {:>12.8f} {:>12.8f}\n".format(parameters[0],parameters[1]))
         f.close()
@@ -134,8 +195,10 @@ def cost(params, args):
             for dist in np.arange(dmin, dmax, dstep):
 
                 # Initialize the system
-                in_file_dict["out_file_name"]   = "results/{}{:.2f}.log".format(prefix,dist)
+                in_file_dict["out_file_name"]   = "results/out.log"
                 in_file_dict["geometry_file"]   = "../dataset/examples/{}/{}{:.2f}.xyz".format(folder,prefix,dist)
+
+                # Make the system object
                 system = System(in_file_dict)
 
                 # Get the geomtry of the system
@@ -156,39 +219,39 @@ def cost(params, args):
                 # Build the RHS matrix
                 RHS = make_right_hand_side_fq_fqfmu(system)
 
-                # Solve the Ax=b problem and get the atomic charges
-                q  = inversion(LHS, RHS, System=system)
 
-                # Interaction energy
                 try:
+                    # Solve the Ax=b problem and get the atomic charges
+                    q  = inversion(LHS, RHS, System=system)
+
+                    # Interaction energy
                     Eint = interaction_energy(system, q=q[0:system.NumAtoms], mu=q[system.NumAtoms+system.NumGroups:])
+
+                    # Get the reference value of a specific geometry
+                    ref  = float(os.popen("grep 'QM/MM Electrostatic Energy:' ../dataset/examples/{}/eT/{}{:.2f}.out".format(folder,prefix,dist)).read().split()[-1])
+
+                    # Get the interaction energy 1-2 and 1-3 and convert it to kcal/mol 
+                    comp = (Eint[0,1]+Eint[0,2])*627.509
                 except:
-                    Eint = 1.0e08
+                    # Get the reference value of a specific geometry
+                    ref  = float(os.popen("grep 'QM/MM Electrostatic Energy:' ../dataset/examples/{}/eT/{}{:.2f}.out".format(folder,prefix,dist)).read().split()[-1])
 
-                # Get the reference value of a specific geometry
-                ref  = float(os.popen("grep 'QM/MM Electrostatic Energy:' ../dataset/examples/{}/eT/{}{:.2f}.out".format(folder,prefix,dist)).read().split()[-1])
-
-                # Get the interaction energy 1-2 and 1-3 and convert it to kcal/mol 
-                comp = (Eint[0,1]+Eint[0,2])*627.509
+                    # Set the interaction energy to an high value
+                    comp = 1.0e10
 
                 # Add to the list of observables
                 # for a specific parameters set
                 comp_list.append(comp)
                 ref_list.append(ref)
 
-                # TODO Scegli con una keyword che tipo di peso usare
                 # Weights
-                # w = 1/r
-                #w_list.append(dmin/dist)
-                # w cut-off
-                if dist <= 6.0:
-                    w_list.append(1.0)
-                else:
+                if w_type == "1/r":
+                    w_list.append(dmin/dist)
+                elif w_type == "1":
                     w_list.append(1.0)
 
                 # Accumulate the total number of geometries used
                 N += 1
-
 
         # Add to the cost function list
         cost_list.append(np.sum(np.asarray(w_list)*np.square(np.asarray(ref_list) - np.asarray(comp_list)))/N)
@@ -201,6 +264,9 @@ def cost(params, args):
 
     # Update offspring value
     offspring += 1
+
+    # Rimuovo il log perche' ci appende roba e fa un casino!
+    os.system("rm {}".format(in_file_dict["out_file_name"]))
 
     return cost_list
 
@@ -233,20 +299,17 @@ final_pop = es.evolve(generator=generate_parameters,
                       pop_size=pop_size,
                       maximize=False,
                       bounder=ec.Bounder(param_min, param_max),
-                      max_evaluations=pop_size*100,
+                      max_evaluations=pop_size*500,
                       mutation_rate=0.25,
-                      num_inputs=4,             # <<--------<<<- DEVONO ESSERE IL DOPPIO DEGLI ATOM TYPES!
+                      num_inputs=nparams,
                       outputfile=outputfile,
-                      paramfile=paramfile
-                      #prefix = "acetonitrile_d",
-                      #folder_list = ["acetonitrile_scan_C-C",
-                      #               "acetonitrile_scan_C-H",
-                      #               "acetonitrile_scan_C-N"
-                      #              ]
+                      paramfile=paramfile,
+                      prefix=prefix,
+                      folder_list=folder_list
                       )
 
 # Sort and print the best individual, who will be at index 0.
 final_pop.sort(reverse=True)
-print(final_pop[0])
+#print(final_pop[0])
 
 os.system("rm {}".format(paramfile))
