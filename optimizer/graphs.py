@@ -71,10 +71,12 @@ for run in range(1,nruns+1):
         ## Water
         #o.write("#      ChiH            EtaH            ChiO            EtaO\n")
         # Acetonitrile
-        if use_at == True:
-            o.write("#       ChiCH3          EtaCH3           ChiCN           EtaCN            ChiN            EtaN            ChiH            EtaH\n")
-        elif use_at == False:
-            o.write("#       ChiC            EtaC             ChiN            EtaN             ChiH            EtaH\n")
+        #if use_at == True:
+        #    o.write("#       ChiCH3          EtaCH3           ChiCN           EtaCN            ChiN            EtaN            ChiH            EtaH\n")
+        #elif use_at == False:
+        #    o.write("#       ChiC            EtaC             ChiN            EtaN             ChiH            EtaH\n")
+        # Methanol
+        o.write("#       ChiCH3          EtaCH3          ChiH3C          EtaH3C           ChiOH           EtaOH           ChiHO           EtaHO\n")
         o.write("#")
         for param_i in param:
             o.write(" {:>15.4e}".format(param_i))
@@ -87,17 +89,22 @@ for run in range(1,nruns+1):
         ## Water
         #f.write("H {} {}\n".format(param[0],param[1]))
         #f.write("O {} {}\n".format(param[2],param[3]))
-       # Acetonitrile
-        if use_at == True:
-            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
-            f.write("CN  {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
-            f.write("N   {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
-            f.write("H   {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
-        elif use_at == False:
-            f.write("CH3 {} {}\n".format(param[0],param[1]))
-            f.write("CN  {} {}\n".format(param[0],param[1]))
-            f.write("N   {} {}\n".format(param[2],param[3]))
-            f.write("H   {} {}\n".format(param[4],param[5]))
+        ## Acetonitrile
+        #if use_at == True:
+        #    f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+        #    f.write("CN  {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+        #    f.write("N   {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+        #    f.write("H   {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
+        #elif use_at == False:
+        #    f.write("CH3 {} {}\n".format(param[0],param[1]))
+        #    f.write("CN  {} {}\n".format(param[0],param[1]))
+        #    f.write("N   {} {}\n".format(param[2],param[3]))
+        #    f.write("H   {} {}\n".format(param[4],param[5]))
+        # Methanol
+        f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+        f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+        f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+        f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
         # Non commentare mai!
         f.write("Po {} {}\n".format(param[0],param[1]))
         f.write("Ne {} {}\n".format(param[0],param[1]))
