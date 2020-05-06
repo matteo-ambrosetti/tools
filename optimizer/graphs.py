@@ -76,7 +76,10 @@ for run in range(1,nruns+1):
         #elif use_at == False:
         #    o.write("#       ChiC            EtaC             ChiN            EtaN             ChiH            EtaH\n")
         # Methanol
-        o.write("#       ChiCH3          EtaCH3          ChiH3C          EtaH3C           ChiOH           EtaOH           ChiHO           EtaHO\n")
+        if use_at == True:
+            o.write("#       ChiCH3          EtaCH3          ChiH3C          EtaH3C           ChiOH           EtaOH           ChiHO           EtaHO\n")
+        elif use_at == False:
+            o.write("#       ChiC            EtaC            ChiH            EtaH             ChiO            EtaO\n")
         o.write("#")
         for param_i in param:
             o.write(" {:>15.4e}".format(param_i))
@@ -101,10 +104,16 @@ for run in range(1,nruns+1):
         #    f.write("N   {} {}\n".format(param[2],param[3]))
         #    f.write("H   {} {}\n".format(param[4],param[5]))
         # Methanol
-        f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
-        f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
-        f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
-        f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
+        if use_at == True:
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+            f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+            f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+            f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
+        elif use_at == False:
+            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+            f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+            f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+            f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
         # Non commentare mai!
         f.write("Po {} {}\n".format(param[0],param[1]))
         f.write("Ne {} {}\n".format(param[0],param[1]))

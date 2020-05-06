@@ -40,10 +40,10 @@ args = parser.parse_args()
 
 molecule = args.molecule.lower()
 inputfolderparams = args.inputfolderparams
-inputfoldergeoms  = args.inputfoldergeoms #"/home/m.ambrosetti/dataset_dipole_scan/test_bulk_polar_mu/xyz"
-inputfolderlogs   = args.inputfolderlogs  #"/home/m.ambrosetti/dataset_dipole_scan/test_bulk_polar_mu/com_water_tip3p_polar"
+inputfoldergeoms  = args.inputfoldergeoms
+inputfolderlogs   = args.inputfolderlogs
 use_at = args.useatomtype
-paramfile = "opt_param.csv"
+paramfile = "opt_param_validation_{}.csv".format(molecule)
 
 
 o = open("validation_{}.csv".format(molecule),"w")
@@ -76,7 +76,10 @@ for run in range(1,nruns+1):
     o.write("# Run {}\n".format(run))
 
     # Load parameters of a specific run
-    A = np.loadtxt("{}/output_{}.txt".format(inputfolderparams,run))
+    try:
+        A = np.loadtxt("{}/output_{}.txt".format(inputfolderparams,run))
+    except:
+        continue
 
     # Take the first nbest parameters of the run
     BestN  = sorted(A,key=lambda x: x[0])[0:nbest]
@@ -102,8 +105,12 @@ for run in range(1,nruns+1):
                 o.write("#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z" + \
                         "          ChiC            EtaC             ChiN            EtaN            ChiH            EtaH\n")
         elif molecule == "methanol":
-            o.write("#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z" + \
-                    "          ChiCH3          EtaCH3          ChiH3C          EtaH3C           ChiOH           EtaOH           ChiHO           EtaHO\n")
+            if use_at == True:
+                o.write("#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z" + \
+                        "          ChiCH3          EtaCH3          ChiH3C          EtaH3C           ChiOH           EtaOH           ChiHO           EtaHO\n")
+            elif use_at == False:
+                o.write("#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z" + \
+                        "          ChiC            EtaC            ChiH            EtaH             ChiO            EtaO\n")
         elif molecule == "benzene":
             o.write("#            Cost    Isopol_error  Anisopol_error  Dipole_error_x  Dipole_error_y  Dipole_error_z            ChiH            EtaH            ChiC            EtaC\n")
 
@@ -125,10 +132,16 @@ for run in range(1,nruns+1):
                 f.write("N   {} {}\n".format(param[2],param[3]))
                 f.write("H   {} {}\n".format(param[4],param[5]))
         if molecule == "methanol":
-            f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
-            f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
-            f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
-            f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
+            if use_at == True:
+                f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+                f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+                f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+                f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[6],param[7]))
+            elif use_at == False:
+                f.write("CH3 {:>12.8f} {:>12.8f}\n".format(param[0],param[1]))
+                f.write("H3C {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
+                f.write("OH  {:>12.8f} {:>12.8f}\n".format(param[4],param[5]))
+                f.write("HO  {:>12.8f} {:>12.8f}\n".format(param[2],param[3]))
         if molecule == "benzene":
             f.write("H {} {}\n".format(param[0],param[1]))
             f.write("C {} {}\n".format(param[2],param[3]))
@@ -273,115 +286,5 @@ for run in range(1,nruns+1):
 o.close()
 
 os.system("mv validation_{}.csv {}/".format(molecule,inputfolderparams))
+os.system("rm {}".format(paramfile))
 
-
-
-
-### CLUSTER MOLECULE VALIDATION
-#o.write("Bulk properties validation\n")
-#
-#for run in range(1,11):
-#    o.write("Run {}\n".format(run))
-#    # Load parameters of a specific run
-#    A = np.loadtxt("{}/output_{}.txt".format(inputfolder,run))
-#
-#    paramfile = "opt_param.csv"
-#    N = 1
-#    BestN  = sorted(A,key=lambda x: x[0])[0:N]
-#    cost   = np.asarray([i[0] for i in BestN])
-#    params = np.asarray([i[1:] for i in BestN])
-#
-#    iso_error = []
-#    aniso_error = []
-#    mu_error = []
-#    for r in np.arange(2.0, 5.0, 1.0):
-#        for fr in range(100):
-#            geomfile  = "/home/m.ambrosetti/dataset_dipole_scan/test_qmqm/sphere/xyz/sphere_r{}_fr{}.xyz".format(int(r),fr)
-#            for param in params:
-#                f = open(paramfile,"w")
-#                f.write("# atom_type   chi                 eta      a.u.\n")
-#                # Water
-#                f.write("H {} {}\n".format(param[0],param[1]))
-#                f.write("O {} {}\n".format(param[2],param[3]))
-#                f.close()
-#
-#                # Initialize the input dictionary
-#                in_file_dict = {}
-#                in_file_dict["system_name"]     = molecule
-#                in_file_dict["out_folder"]      = "results_opt/"
-#                in_file_dict["out_file_name"]   = "results_opt/mms_{}.log".format(run)
-#                in_file_dict["model"]           = "fq"
-#                in_file_dict["kernel"]          = "ohno"
-#                in_file_dict["try_guess"]       = True
-#                in_file_dict["parameters_file"] = paramfile
-#                in_file_dict["geometry_file"]   = geomfile
-#                in_file_dict["werbosity"]       = 2
-#
-#                # Initialize the system
-#                system = System(in_file_dict)
-#
-#                # Get the geomtry of the system
-#                try:
-#                    system.read_xyz(in_filename=in_file_dict["geometry_file"])
-#                except:
-#                    continue
-#
-#                # Get the parameters from the paramfile
-#                system.get_params()
-#
-#                # Build the LHS matrix
-#                LHS = make_left_hand_side_fq_fqfmu(system)
-#
-#                # Build the RHS matrix
-#                RHS = make_right_hand_side_fq_fqfmu(system)
-#
-#                # Solve the Ax=b problem and get the atomic charges
-#                q  = inversion(LHS, RHS, System=system)
-#
-#                # Polarizability
-#                polar = polarizability(system,LHS,RHS)
-#
-#                # Dipole Moment
-#                mu = np.sum(dipole_moment(system, q[0:system.NumAtoms])[0], axis=0)
-#
-#                # Get the dipole from log file
-#                ref_mu = []
-#                try:
-#                    a = os.popen("grep -A 6 'Electric dipole moment (input orientation):' /home/m.ambrosetti/dataset_dipole_scan/test_qmqm/sphere/com_water_polar/sphere_r{}_fr{}.log".format(int(r), fr)).read()
-#                    char_indx = 0
-#                    for char in a.split():
-#                        if char == 'x' or char == 'y' or char == 'z':
-#                            ref_mu.append(float(a.split()[char_indx+1].replace("D","E")))
-#                        char_indx += 1
-#                    ref_mu = np.array(ref_mu)
-#                    mu_error.append(abs(ref_mu - mu))
-#                except:
-#                    continue
-#
-#
-#                try:
-#                    ref_iso   = float(os.popen("grep 'iso' /home/m.ambrosetti/dataset_dipole_scan/test_qmqm/sphere/com_water_polar/sphere_r{}_fr{}.log".format(int(r), fr)).read().split()[1].replace("D","E"))
-#                    ref_aniso = float(os.popen("grep 'iso' /home/m.ambrosetti/dataset_dipole_scan/test_qmqm/sphere/com_water_polar/sphere_r{}_fr{}.log".format(int(r), fr)).read().split()[2].replace("D","E"))
-#                    iso_error.append(abs(ref_iso - polar[1]))
-#                    aniso_error.append(abs(ref_aniso - polar[2]))
-#                except:
-#                    continue
-#
-#                werbosity = 1
-#                if werbosity > 2:
-#                    o.write("{:<15} {:>15.5e} {:>15.4f} {:>15.4f}".format(geomfile.split("/")[-1].split(".xyz")[0], cost[0], 100*(ref_iso-polar[1])/ref_iso, 100*(ref_aniso-polar[2])/ref_aniso))
-#                    for mu_i in (100*(ref_mu-mu)/ref_mu):
-#                        o.write(" {:>15.4f}".format(mu_i))
-#                    for param_i in param:
-#                        o.write(" {:>15.4e}".format(param_i))
-#                    o.write("\n")
-#
-#    o.write("            ChiH            EtaH            ChiO            EtaO\n")
-#    for param_i in param:
-#        o.write(" {:>15.4e}".format(param_i))
-#    o.write("\n")
-#    o.write("Mean  isopolar error      : {:<10.4f} +/- {:<10.4f}\n".format(np.mean(iso_error),np.std(iso_error)))
-#    o.write("Mean  anisopolar error    : {:<10.4f} +/- {:<10.4f}\n".format(np.mean(aniso_error),np.std(aniso_error)))
-#    o.write("Mean  dipole moment error : {:<10.4f} +/- {:<10.4f}\n".format(np.mean(mu_error),np.std(mu_error)))
-#    o.write("\n")
-#o.close()

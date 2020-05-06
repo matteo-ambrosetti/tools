@@ -52,9 +52,14 @@
 path_data="/home/m.ambrosetti/dataset_dipole_scan/tools/optimizer/examples/methanol/"
 path_geom="/home/m.ambrosetti/dataset_dipole_scan/tools/dataset/examples/"
 
+#for folder in "methanol_scan_C-H_1" "methanol_scan_C-H_2" "methanol_scan_C-O" "methanol_scan_O-C" "methanol_scan_O-H"
+#do
+#    python graphs.py -uat -ifp $path_data"out_w1.0_over_r_int0.0-1.0_1/" -ifg $path_geom$folder -p "methanol_d" -n 20 -nb 1
+#done
+
 for folder in "methanol_scan_C-H_1" "methanol_scan_C-H_2" "methanol_scan_C-O" "methanol_scan_O-C" "methanol_scan_O-H"
 do
-    python graphs.py -uat -ifp $path_data"out_w1.0_over_r_int0.0-1.0_1/" -ifg $path_geom$folder -p "methanol_d" -n 20 -nb 1
+    python graphs.py -ifp $path_data"out_w1.0_over_r_int0.0-1.0_no_at_3/" -ifg $path_geom$folder -p "methanol_d" -n 20 -nb 1
 done
 
 
